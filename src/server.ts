@@ -9,13 +9,16 @@ import * as dotenv from "dotenv";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT ?? 4000;
-// const ORIGIN = process.env.ORIGIN;
-// app.use(
-//   cors({
-//     origin: process.env.ORIGIN,
-//     methods: ["GET", "POST"],
-//   })
-// );
+const ORIGIN = process.env.ORIGIN;
+if (!ORIGIN) {
+  console.error("ORIGIN required");
+}
+app.use(
+  cors({
+    origin: process.env.ORIGIN,
+    methods: ["GET", "POST"],
+  })
+);
 app.use(express.json());
 export const LIMIT = 20;
 const ITEMS = Array.from({ length: 1_000_000 }, (_, i) => i + 1);
