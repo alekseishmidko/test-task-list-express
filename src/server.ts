@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT ?? 4000;
 const ORIGIN = process.env.ORIGIN;
 if (!ORIGIN) {
-  console.error("ORIGIN required");
+  console.error("ORIGIN required", ORIGIN);
 }
 app.use(
   cors({
